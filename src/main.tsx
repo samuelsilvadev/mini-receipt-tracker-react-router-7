@@ -1,17 +1,34 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter } from "react-router";
 import "./index.css";
 import App from "./App.tsx";
+import { createBrowserRouter, RouterProvider } from "react-router";
+import { Receipts } from "./pages/Receipts.tsx";
+import { TrackReceipt } from "./pages/TrackReceipt.tsx";
 
 const root = document.getElementById("root");
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    Component: Receipts,
+    loader: () => {
+      return Promise.resolve({ data: [] });
+    },
+  },
+  {
+    path: "/add",
+    Component: TrackReceipt,
+    loader: () => {
+      return Promise.resolve({ data: [] });
+    },
+  },
+]);
 
 if (root) {
   createRoot(root).render(
     <StrictMode>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <RouterProvider router={router} />
     </StrictMode>,
   );
 }
