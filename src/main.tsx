@@ -4,6 +4,8 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import { Receipts } from "./pages/Receipts.tsx";
 import { TrackReceipt } from "./pages/TrackReceipt.tsx";
+import { getReceipts } from "./services/getRecipes.ts";
+import { PageLoading } from "./components/PageLoading.tsx";
 
 const root = document.getElementById("root");
 
@@ -11,16 +13,12 @@ const router = createBrowserRouter([
   {
     path: "/",
     Component: Receipts,
-    loader: () => {
-      return Promise.resolve({ data: [] });
-    },
+    hydrateFallbackElement: <PageLoading />,
+    loader: getReceipts,
   },
   {
     path: "/add",
     Component: TrackReceipt,
-    loader: () => {
-      return Promise.resolve({ data: [] });
-    },
   },
 ]);
 
