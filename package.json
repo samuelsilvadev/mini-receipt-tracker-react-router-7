@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "server": "json-server db/db.json --port 3001"
   },
   "dependencies": {
     "react": "^19.0.0",
@@ -25,6 +26,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
+    "json-server": "^1.0.0-beta.3",
     "prettier": "^3.5.3",
     "tailwindcss": "^4.1.4",
     "typescript": "~5.7.2",
