@@ -6,6 +6,7 @@ import { Receipts } from "./pages/Receipts.tsx";
 import { TrackReceipt } from "./pages/TrackReceipt.tsx";
 import { getReceipts } from "./services/getRecipes.ts";
 import { PageLoading } from "./components/PageLoading.tsx";
+import PageBoundary from "./components/PageBoundary.tsx";
 
 const root = document.getElementById("root");
 
@@ -13,11 +14,13 @@ const router = createBrowserRouter([
   {
     path: "/",
     Component: Receipts,
+    errorElement: <PageBoundary />,
     hydrateFallbackElement: <PageLoading />,
     loader: getReceipts,
   },
   {
     path: "/add",
+    errorElement: <PageBoundary />,
     Component: TrackReceipt,
   },
 ]);
