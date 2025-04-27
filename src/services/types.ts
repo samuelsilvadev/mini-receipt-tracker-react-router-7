@@ -14,3 +14,9 @@ export const Receipt = z.object({
 });
 
 export type ReceiptPayload = z.infer<typeof Receipt>;
+
+export const EditReceiptSchema = Receipt.extend({
+  id: z.string(),
+});
+
+export type EditReceiptPayload = z.infer<typeof EditReceiptSchema>;

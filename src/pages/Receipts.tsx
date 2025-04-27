@@ -1,4 +1,4 @@
-import { useFetcher, useLoaderData } from "react-router";
+import { Link, useFetcher, useLoaderData } from "react-router";
 
 type Receipt = {
   id: string;
@@ -13,23 +13,28 @@ function Receipt({ receipt }: { receipt: Receipt }) {
 
   return (
     <li className="flex-1 min-w-0 flex items-center bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors p-4">
-      <div>
-        <h3 className="text-sm font-medium text-gray-900 truncate">{name}</h3>
-        <p className="text-sm text-gray-500">{date}</p>
-      </div>
-      <div className="flex items-center gap-4 ml-auto">
-        <span className="text-sm font-medium text-gray-900"> {price} </span>
-        <fetcher.Form method="delete">
-          <input type="hidden" name="id" value={id} />
-          <button
-            disabled={fetcher.state !== "idle"}
-            type="submit"
-            className="text-gray-400 hover:text-red-500 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            🚮
-          </button>
-        </fetcher.Form>
-      </div>
+      <Link className="flex items-center flex-1" to={`/receipt/${id}`}>
+        <div>
+          <h3 className="text-sm font-medium text-gray-900 truncate">{name}</h3>
+          <p className="text-sm text-gray-500">{date}</p>
+        </div>
+        <div className="flex items-center gap-4 ml-auto">
+          <span className="text-sm font-medium text-gray-900"> {price} </span>
+          <fetcher.Form method="delete">
+            <input type="hidden" name="id" value={id} />
+            <button
+              disabled={fetcher.state !== "idle"}
+              type="submit"
+              className="text-gray-400 hover:text-red-500 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+              onClick={(event) => {
+                event.stopPropagation();
+              }}
+            >
+              🚮
+            </button>
+          </fetcher.Form>
+        </div>
+      </Link>
     </li>
   );
 }
