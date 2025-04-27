@@ -13,7 +13,7 @@ const NAVIGATION = [
 
 export function Navigation() {
   return (
-    <nav className="bg-white shadow-md w-full sticky top-0">
+    <nav className="bg-white shadow-md w-full sticky top-0 receipt-tracker-navigation">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between h-16">
           <span className="flex items-center ml-2 text-xl font-semibold text-gray-800">

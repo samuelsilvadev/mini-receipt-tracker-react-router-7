@@ -9,6 +9,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --receipt-tracker-navigation-height: 64px;
 }
 
 body {
@@ -21,4 +23,8 @@ body {
 
 #root {
   width: 100%;
+}
+
+.receipt-tracker-navigation + .receipt-tracker-page-boundary {
+  min-height: calc(100vh - var(--receipt-tracker-navigation-height));
 }

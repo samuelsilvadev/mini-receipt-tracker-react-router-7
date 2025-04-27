@@ -5,7 +5,7 @@ const CLASSES = {
 
 function PageBoundary() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 px-4 receipt-tracker-page-boundary">
       <section className="max-w-md w-full bg-white rounded-xl shadow-lg overflow-hidden">
         <div className="p-8 flex items-center justify-center flex-col gap-3">
           <div className="bg-red-100 p-3 rounded-full">
