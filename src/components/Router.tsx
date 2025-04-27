@@ -33,8 +33,8 @@ const router = createBrowserRouter([
   },
 ]);
 
-function App() {
+function Router() {
   return <RouterProvider router={router} />;
 }
 
-export default App;
+export default Router;
