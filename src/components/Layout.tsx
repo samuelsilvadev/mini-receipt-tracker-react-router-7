@@ -1,11 +1,11 @@
-import { ReactNode } from "react";
 import { Navigation } from "./Navigation";
+import { Outlet } from "react-router";
 
-export function Layout({ children }: { children: ReactNode }) {
+export function Layout() {
   return (
     <>
       <Navigation />
-      {children}
+      <Outlet />
     </>
   );
 }
