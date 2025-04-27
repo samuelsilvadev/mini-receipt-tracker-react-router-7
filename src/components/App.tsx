@@ -7,6 +7,7 @@ import { PageLoading } from "./PageLoading";
 import PageBoundary from "./PageBoundary";
 
 import { Layout } from "./Layout";
+import { deleteReceiptAction } from "../actions/deleteReceipt";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
         errorElement: <PageBoundary />,
         hydrateFallbackElement: <PageLoading />,
         loader: getReceipts,
+        action: deleteReceiptAction,
       },
       {
         path: "/add",

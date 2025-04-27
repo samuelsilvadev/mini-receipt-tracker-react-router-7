@@ -15,3 +15,14 @@ export async function saveReceipt(receipt: ReceiptPayload) {
 
   return response.json();
 }
+
+export async function deleteReceipt(id: Receipt["id"]) {
+  const response = await fetch(
+    `${import.meta.env.VITE_BASE_URL}/receipts/${id}`,
+    {
+      method: "DELETE",
+    },
+  );
+
+  return response.json();
+}

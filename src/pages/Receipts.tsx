@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router";
+import { Form, useLoaderData } from "react-router";
 
 type Receipt = {
   id: string;
@@ -8,7 +8,7 @@ type Receipt = {
 };
 
 function Receipt({ receipt }: { receipt: Receipt }) {
-  const { name, date, price } = receipt;
+  const { name, date, price, id } = receipt;
 
   return (
     <li className="flex-1 min-w-0 flex items-center bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors p-4">
@@ -18,9 +18,15 @@ function Receipt({ receipt }: { receipt: Receipt }) {
       </div>
       <div className="flex items-center gap-4 ml-auto">
         <span className="text-sm font-medium text-gray-900"> {price} </span>
-        <button className="text-gray-400 hover:text-red-500 transition-colors">
-          🚮
-        </button>
+        <Form method="delete">
+          <input type="hidden" name="id" value={id} />
+          <button
+            type="submit"
+            className="text-gray-400 hover:text-red-500 transition-colors cursor-pointer"
+          >
+            🚮
+          </button>
+        </Form>
       </div>
     </li>
   );

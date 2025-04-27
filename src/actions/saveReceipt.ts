@@ -1,9 +1,10 @@
+import { ActionFunctionArgs } from "react-router";
 import { Receipt } from "../services/types";
 import { logger } from "../services/logger";
 import { saveReceipt } from "../services/receipt";
 import { ZodError } from "zod";
 
-export async function saveReceiptAction({ request }: { request: Request }) {
+export async function saveReceiptAction({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
 
   try {
