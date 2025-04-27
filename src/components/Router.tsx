@@ -16,6 +16,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     Component: Layout,
+    errorElement: <PageBoundary />,
     children: [
       {
         index: true,
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/receipt/:id",
+        hydrateFallbackElement: <PageLoading />,
         errorElement: <PageBoundary />,
         Component: EditReceipt,
         loader: ({ params }) => {
