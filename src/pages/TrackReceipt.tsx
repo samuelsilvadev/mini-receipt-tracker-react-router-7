@@ -1,4 +1,6 @@
+import { useEffect, useRef, useState } from "react";
 import { useFetcher } from "react-router";
+import { useDelayedAction } from "../hooks/useDelayedAction";
 
 function getToday() {
   const today = new Date();
@@ -7,10 +9,25 @@ function getToday() {
 }
 
 export default function TrackReceipt() {
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const fetcher = useFetcher<{ success?: boolean; error?: string }>();
   const isSubmitting = fetcher.state !== "idle";
   const isSuccess = fetcher.data?.success;
   const isError = fetcher.data?.error;
+  const formRef = useRef<HTMLFormElement>(null);
+
+  useDelayedAction({
+    isEnabled: isSuccess,
+    onComplete: () => setShowSuccessMessage(false),
+    ms: 5000,
+  });
+
+  useEffect(() => {
+    if (isSuccess) {
+      formRef.current?.reset();
+      setShowSuccessMessage(true);
+    }
+  }, [isSuccess]);
 
   return (
     <div className="flex items-center justify-center p-4 pt-8">
@@ -26,13 +43,13 @@ export default function TrackReceipt() {
             </div>
           )}
 
-          {isSuccess && (
+          {isSuccess && showSuccessMessage && (
             <div className="mb-4 p-4 bg-green-50 text-green-700 rounded-lg">
               Receipt added successfully!
             </div>
           )}
 
-          <fetcher.Form method="post" className="space-y-6">
+          <fetcher.Form method="post" className="space-y-6" ref={formRef}>
             <div className="space-y-2">
               <label
                 htmlFor="itemName"
@@ -90,7 +107,7 @@ export default function TrackReceipt() {
             <button
               disabled={isSubmitting}
               type="submit"
-              className="w-full bg-indigo-600 text-white py-3 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-150 ease-in-out transform hover:scale-[1.02]"
+              className="w-full bg-indigo-600 text-white py-3 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-150 ease-in-out transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? "Adding..." : "Add Receipt"}
             </button>
