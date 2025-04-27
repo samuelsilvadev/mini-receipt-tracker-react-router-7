@@ -1,0 +1,10 @@
+{
+    "receipts": [
+        {
+            "id": "1",
+            "name": "Receipt 1",
+            "price": 100,
+            "date": "2021-01-01"
+        }
+    ]
+}
